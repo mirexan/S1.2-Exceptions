@@ -21,6 +21,7 @@ public class Entrada {
 			}
 			catch (InputMismatchException e){
 				System.out.println("Error : " + e.getMessage());
+				sc.next();
 				flag_ok = false;
 			}
 		}
@@ -40,6 +41,7 @@ public class Entrada {
 			}
 			catch (InputMismatchException e){
 				System.out.println("Error : " + e.getMessage());
+				sc.next();
 				flag_ok = false;
 			}
 		}
@@ -58,6 +60,7 @@ public class Entrada {
 			}
 			catch (InputMismatchException e){
 				System.out.println("Error : " + e.getMessage());
+				sc.next();
 				flag_ok = false;
 			}
 		}
@@ -76,6 +79,7 @@ public class Entrada {
 			}
 			catch (InputMismatchException e){
 				System.out.println("Error : " + e.getMessage());
+				sc.next();
 				flag_ok = false;
 			}
 		}
@@ -148,3 +152,4 @@ public class Entrada {
 		return resposta;
 	}
 }
+
