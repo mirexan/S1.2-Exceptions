@@ -10,7 +10,7 @@ public class Venda {
 
 	//CONSTRUCTOR
 
-	public Venda(Producte producte){
+	public Venda(){
 		this.productes = new ArrayList<Producte>();
 		this.preuTotal = 0;
 	}
@@ -23,7 +23,7 @@ public class Venda {
 		return this.preuTotal;
 	}
 	//SETTER
-	public void setProductes(Producte producte)
+	public void setVenda(Producte producte)
 	{
 		this.productes.add(producte);
 	}
@@ -31,11 +31,15 @@ public class Venda {
 		this.preuTotal = preuTotal;
 	}
 	//GENERAL METHODS
-	public int calcularTotal()
-	{
+	public void calcularTotal() throws VendaBuidaException {
 		if(getProductes().isEmpty())
 		{
-
+			throw new VendaBuidaException("Per fer una venda primer has d’afegir productes");
+		}
+		else{
+				for (Producte producte:productes){
+					this.preuTotal += producte.getPreu();
+				}
 		}
 	}
 }
