@@ -14,4 +14,28 @@ public class Venda {
 		this.productes = new ArrayList<Producte>();
 		this.preuTotal = 0;
 	}
+	//GETTER
+	public ArrayList<Producte> getProductes()
+	{
+		return this.productes;
+	}
+	public int getPreuTotal() {
+		return this.preuTotal;
+	}
+	//SETTER
+	public void setProductes(Producte producte)
+	{
+		this.productes.add(producte);
+	}
+	public void setPreuTotal(int preuTotal){
+		this.preuTotal = preuTotal;
+	}
+	//GENERAL METHODS
+	public int calcularTotal()
+	{
+		if(getProductes().isEmpty())
+		{
+
+		}
+	}
 }
