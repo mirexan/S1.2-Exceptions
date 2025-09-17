@@ -15,9 +15,42 @@ public class Cine {
 		this.gCine = new GestioCine();
 		demanarDadesInicials();
 	}
+	//GETTER
+
+	public int getFiles_sala() {
+		return this.files_sala;
+	}
+	public int getSeients_fila(){
+		return this.seients_fila;
+	}
 
 	public static void iniciar () {
-		GestioCine.menu();
+		int opcio = -1;
+
+		while (opcio != 0)
+		{
+			opcio = GestioCine.menu();
+			switch (opcio)
+			{
+				case 1:
+					//Mostrar totes les butaques reservades.
+					break;
+				case 2:
+					//Mostrar les butaques reservades per una persona.
+					break;
+				case 3:
+					//Reservar una butaca.
+					break;
+				case 4:
+					//Anul·lar la reserva d’una butaca.
+					break;
+				case 5:
+					//Anul·lar totes les reserves d’una persona.
+					break;
+				default:
+					break;
+			}
+		}
 
 	}
 	public void demanarDadesInicials()
