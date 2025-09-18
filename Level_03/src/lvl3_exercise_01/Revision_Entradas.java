@@ -37,6 +37,7 @@ public class Revision_Entradas {
 			System.out.println(missatge);
 			try {
 				resposta_us = sc.nextInt();
+				sc.nextLine();
 				flag_ok = true;
 			}
 			catch (InputMismatchException e){
@@ -56,6 +57,7 @@ public class Revision_Entradas {
 			System.out.println(missatge);
 			try {
 				resposta_us = sc.nextFloat();
+				sc.next();
 				flag_ok = true;
 			}
 			catch (InputMismatchException e){
@@ -117,7 +119,7 @@ public class Revision_Entradas {
 		String entrada = "";
 		while (!flag_ok){
 			System.out.println(missatge);
-			entrada = sc.next();
+			entrada = sc.nextLine();
 			try {
 				if (entrada.isEmpty() || entrada.isBlank())
 					throw new ReadException("S'ha d'introduir una cadena amb caràcters visibles");

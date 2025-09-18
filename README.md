@@ -2,7 +2,7 @@
 
 ### 📄 **Description**
 
-This project has two exercises about excepcions and error management. In which i've learned to throw an
+This project has two exercises about exceptions and error management. In which i've learned to throw an
 own exception class and to make a try catch in uncertain situations.
 
 ### 💻 **Used technologies**

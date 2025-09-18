@@ -49,7 +49,10 @@ public class GestioCine {
 	public String	reservarButaca(){
 		int fila = introduirFila();
 		int seient = introduirSeient();
-		String nom = introduirPersona();
+		String nom = "";
+		do{
+			nom = introduirPersona();
+		}while(nom.equalsIgnoreCase(""));
 		Butaca novaButaca = new Butaca(fila,seient,nom);
 		String resposta = this.cine.getGestioButaques().afegirButaca(novaButaca);
 		return resposta;
@@ -67,10 +70,13 @@ public class GestioCine {
 	}
 
 	public String anularReservaPersona(){
-		String nom = introduirPersona();
+		String nom = "";
 		String resposta = "";
 		int fila = 0, seient = 0;
-		for(int i = 0; i < this.cine.getGestioButaques().getButaques().size();i++)
+		do{
+			nom = introduirPersona();
+		}while(nom.isEmpty());
+		for(int i = this.cine.getGestioButaques().getButaques().size() - 1; i >= 0 ;i--)
 		{
 			if (this.cine.getGestioButaques().getButaques().get(i).getNom().equalsIgnoreCase(nom)) {
 				fila = this.cine.getGestioButaques().getButaques().get(i).getNum_fila();
@@ -111,7 +117,8 @@ public class GestioCine {
 				resposta = nom;
 		}
 		catch (ReadException.ExcepcioNomPersonaIncorrecte e){
-			resposta = "Error : " + e.getMessage();
+			System.out.println("Error : " + e.getMessage());
+			resposta ="";
 		}
 		return resposta;
 	}
