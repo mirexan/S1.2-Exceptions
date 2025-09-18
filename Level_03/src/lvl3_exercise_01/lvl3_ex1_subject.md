@@ -94,23 +94,23 @@ Mètodes:
     "menu": Mostrarà les opcions del menú principal a l’usuari/ària, li demanarà 
     el número de l’opció escollida i el retornarà.
     
-        "mostrarButaques": Mostra totes les butaques reservades.
+    "mostrarButaques": Mostra totes les butaques reservades.
     
-        "mostrarButaquesPersona": Demana el nom de la persona que ha fet la reserva 
-        i mostra totes les butaques reservades per aquesta persona
+    "mostrarButaquesPersona": Demana el nom de la persona que ha fet la reserva 
+    i mostra totes les butaques reservades per aquesta persona
     
-        "reservarButaca": Demana a l’usuari/ària un número de fila 
-        (crida al mètode "introduirFila"), un número de seient 
-        (crida al mètode "introduirSeient"), el nom de la persona que fa 
-        la reserva (crida al mètode "introduirPersona") i reserva la butaca.
+    "reservarButaca": Demana a l’usuari/ària un número de fila 
+    (crida al mètode "introduirFila"), un número de seient 
+    (crida al mètode "introduirSeient"), el nom de la persona que fa 
+    la reserva (crida al mètode "introduirPersona") i reserva la butaca.
     
-        "anularReserva": Demana a l’usuari/ària un número de fila 
-        (crida al mètode "introduirFila"), un número de seient (crida al mètode "introduirSeient") 
-        i elimina la reserva de la butaca.
+    "anularReserva": Demana a l’usuari/ària un número de fila 
+    (crida al mètode "introduirFila"), un número de seient (crida al mètode "introduirSeient") 
+    i elimina la reserva de la butaca.
     
-        "anularReservaPersona": Demana a l’usuari/ària el nom de 
-        la persona (crida al mètode "introduirPersona") i elimina les butaques reservades 
-        per la persona introduïda.
+    "anularReservaPersona": Demana a l’usuari/ària el nom de 
+    la persona (crida al mètode "introduirPersona") i elimina les butaques reservades 
+    per la persona introduïda.
    
     "introduirPersona": Demana a l’usuari/ària el nom de la persona i 
     el retorna si és correcte. Si conté números, llença una excepció personalitzada 

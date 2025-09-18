@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class GestioCine {
 	//ATRIBUTTES
-	private Cine cine;
+	private final Cine cine;
 	//CONSTRUCTOR
 	public GestioCine(Cine cine)
 	{
@@ -26,16 +26,73 @@ public class GestioCine {
 
 	public String	mostrarButaques(){
 		String resposta = "";
+		for(int i = 0; i < this.cine.getGestioButaques().getButaques().size();i++)
+		{
+			resposta += "\n" + this.cine.getGestioButaques().getButaques().get(i).toString();
+		}
 		return resposta;
 	}
+
+	public String	mostrarButaquesPersona(){
+		String nom = introduirPersona();
+		String resposta = "";
+		for(int i = 0; i < this.cine.getGestioButaques().getButaques().size();i++)
+		{
+			if (this.cine.getGestioButaques().getButaques().get(i).getNom().equalsIgnoreCase(nom))
+				resposta += "\n" + this.cine.getGestioButaques().getButaques().get(i).toString();
+		}
+		if (resposta.isEmpty())
+			resposta = "No s'han trobat butaques reservades a nom de :" + nom;
+		return resposta;
+	}
+
+	public String	reservarButaca(){
+		int fila = introduirFila();
+		int seient = introduirSeient();
+		String nom = introduirPersona();
+		Butaca novaButaca = new Butaca(fila,seient,nom);
+		String resposta = this.cine.getGestioButaques().afegirButaca(novaButaca);
+		return resposta;
+	}
+
+	public String anularReserva()
+	{
+		int fila = 0, seient = 0, idButaca = -1;
+		String resposta =  "";
+		System.out.println("A continuació es solicita la fila i el seient de la reserva a anular");
+		fila = introduirFila();
+		seient = introduirSeient();
+		resposta = this.cine.getGestioButaques().eliminarButaca(fila,seient);
+		return resposta;
+	}
+
+	public String anularReservaPersona(){
+		String nom = introduirPersona();
+		String resposta = "";
+		int fila = 0, seient = 0;
+		for(int i = 0; i < this.cine.getGestioButaques().getButaques().size();i++)
+		{
+			if (this.cine.getGestioButaques().getButaques().get(i).getNom().equalsIgnoreCase(nom)) {
+				fila = this.cine.getGestioButaques().getButaques().get(i).getNum_fila();
+				seient = this.cine.getGestioButaques().getButaques().get(i).getNum_seient();
+				resposta += "\n" + this.cine.getGestioButaques().getButaques().get(i).toString();
+				this.cine.getGestioButaques().eliminarButaca(fila, seient);
+			}
+		}
+		if (resposta.isEmpty())
+			resposta = "No s'han trobat butaques reservades a nom de :" + nom;
+		else {
+			resposta += "\n han sigut eliminades";
+		}
+		return resposta;
+	}
+
 	public String introduirPersona(){
 		String resposta = "";
 		String nom = "";
 		int i = 0;
 		boolean flag = true;
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Indiqui un nom");
-		nom = sc.nextLine();
+		nom = Revision_Entradas.llegirString("Indiqui el nom de la persona");
 		try{
 			while (i < nom.length() && flag)
 			{
@@ -61,10 +118,7 @@ public class GestioCine {
 	public int introduirFila(){
 		int resposta = 0;
 		int fila = 0;
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Indiqui una fila");
-		fila = sc.nextInt();
-		sc.next();
+		fila = Revision_Entradas.llegirInt("Indiqui el número de la fila");
 		try{
 			if (fila > 0 && fila <= this.cine.getFiles_sala())
 			{
@@ -83,10 +137,7 @@ public class GestioCine {
 	public int introduirSeient(){
 		int resposta = 0;
 		int seient = 0;
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Indiqui el numero del seient");
-		seient = sc.nextInt();
-		sc.next();
+		seient = Revision_Entradas.llegirInt("Indiqui el número del seient");
 		try{
 			if (seient > 0 && seient <= this.cine.getSeients_fila())
 			{

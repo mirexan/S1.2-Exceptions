@@ -12,8 +12,8 @@ public class Cine {
 	//CONSTRUCTOR
 	public Cine(){
 		this.gButaca = new GestioButaques();
-		this.gCine = new GestioCine();
 		demanarDadesInicials();
+		this.gCine = new GestioCine(this);
 	}
 	//GETTER
 
@@ -23,9 +23,16 @@ public class Cine {
 	public int getSeients_fila(){
 		return this.seients_fila;
 	}
+	public GestioButaques getGestioButaques (){
+		return this.gButaca;
+	}
+	public GestioCine getgCine() {
+		return this.gCine;
+	}
 
-	public static void iniciar () {
+	public void iniciar () {
 		int opcio = -1;
+		String resposta = "";
 
 		while (opcio != 0)
 		{
@@ -33,23 +40,25 @@ public class Cine {
 			switch (opcio)
 			{
 				case 1:
-					//Mostrar totes les butaques reservades.
+					resposta = this.gCine.mostrarButaques();
 					break;
 				case 2:
-					//Mostrar les butaques reservades per una persona.
+					resposta = this.gCine.mostrarButaquesPersona();
 					break;
 				case 3:
-					//Reservar una butaca.
+					resposta = this.gCine.reservarButaca();
 					break;
 				case 4:
-					//Anul·lar la reserva d’una butaca.
+					resposta = this.gCine.anularReserva();
 					break;
 				case 5:
-					//Anul·lar totes les reserves d’una persona.
+					resposta = this.gCine.anularReservaPersona();
 					break;
 				default:
+					resposta = "Sortint de l'aplicació.";
 					break;
 			}
+			System.out.println(resposta + "\n\n");
 		}
 
 	}

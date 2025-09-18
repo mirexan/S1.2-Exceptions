@@ -3,9 +3,9 @@ package lvl3_exercise_01;
 public class Butaca {
 	//ATTRIBUTES
 
-	private int num_fila;
-	private int num_seient;
-	private String nom;
+	private final int num_fila;
+	private final int num_seient;
+	private final String nom;
 
 	//CONSTRUCTOR
 	public Butaca(int num_fila, int num_seient, String nom){
