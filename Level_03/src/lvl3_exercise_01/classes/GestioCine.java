@@ -1,6 +1,4 @@
-package lvl3_exercise_01;
-
-import java.util.Scanner;
+package lvl3_exercise_01.classes;
 
 public class GestioCine {
 	//ATRIBUTTES

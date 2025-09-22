@@ -1,6 +1,8 @@
 package lvl2_exercise_01;
 
-public class Lvl2_Exercise_01 {
+import lvl2_exercise_01.classes.Entrada;
+
+public class Lvl2_Exercise_01_Main {
 	public static void main(String[] args) {
 		Entrada entrada = new Entrada();
 		Byte resposta_byte = 0;

@@ -1,4 +1,4 @@
-package lvl1_exercise_01;
+package lvl1_exercise_01.classes;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,9 @@
-package lvl3_exercise_01;
+package lvl2_exercise_01.classes;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Revision_Entradas {
+public class Entrada {
 	static Scanner sc = new Scanner(System.in);
 
 	//GENERAL METHODS InputMismatch
@@ -37,7 +37,6 @@ public class Revision_Entradas {
 			System.out.println(missatge);
 			try {
 				resposta_us = sc.nextInt();
-				sc.nextLine();
 				flag_ok = true;
 			}
 			catch (InputMismatchException e){
@@ -57,7 +56,6 @@ public class Revision_Entradas {
 			System.out.println(missatge);
 			try {
 				resposta_us = sc.nextFloat();
-				sc.next();
 				flag_ok = true;
 			}
 			catch (InputMismatchException e){
@@ -100,10 +98,10 @@ public class Revision_Entradas {
 			entrada = sc.next();
 			try {
 				if (entrada.length() != 1)
-					throw new ReadException("S'ha d'introduir un char");
+					throw new LlegirException("S'ha d'introduir un char");
 				flag_ok = true;
 			}
-			catch (ReadException e){
+			catch (LlegirException e){
 				System.out.println("Error : " + e.getMessage());
 				flag_ok = false;
 			}
@@ -119,13 +117,13 @@ public class Revision_Entradas {
 		String entrada = "";
 		while (!flag_ok){
 			System.out.println(missatge);
-			entrada = sc.nextLine();
+			entrada = sc.next();
 			try {
 				if (entrada.isEmpty() || entrada.isBlank())
-					throw new ReadException("S'ha d'introduir una cadena amb caràcters visibles");
+					throw new LlegirException("S'ha d'introduir una cadena amb caràcters visibles");
 				flag_ok = true;
 			}
-			catch (ReadException e){
+			catch (LlegirException e){
 				System.out.println("Error : " + e.getMessage());
 				flag_ok = false;
 			}
@@ -143,9 +141,9 @@ public class Revision_Entradas {
 			entrada = sc.next();
 			try {
 				if (entrada.length() != 1 || (entrada.charAt(0) != 'n' && entrada.charAt(0) != 's'))
-					throw new ReadException("S'ha d'introduir 's' com a sí i 'n' com a no");
+					throw new LlegirException("S'ha d'introduir 's' com a sí i 'n' com a no");
 				flag_ok = true;
-			} catch (ReadException e) {
+			} catch (LlegirException e) {
 				System.out.println("Error : " + e.getMessage());
 				flag_ok = false;
 			}
@@ -154,3 +152,4 @@ public class Revision_Entradas {
 		return resposta;
 	}
 }
+

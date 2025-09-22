@@ -1,9 +1,9 @@
-package lvl2_exercise_01;
+package lvl3_exercise_01.classes;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Entrada {
+public class Revision_Entradas {
 	static Scanner sc = new Scanner(System.in);
 
 	//GENERAL METHODS InputMismatch
@@ -37,6 +37,7 @@ public class Entrada {
 			System.out.println(missatge);
 			try {
 				resposta_us = sc.nextInt();
+				sc.nextLine();
 				flag_ok = true;
 			}
 			catch (InputMismatchException e){
@@ -56,6 +57,7 @@ public class Entrada {
 			System.out.println(missatge);
 			try {
 				resposta_us = sc.nextFloat();
+				sc.next();
 				flag_ok = true;
 			}
 			catch (InputMismatchException e){
@@ -98,10 +100,10 @@ public class Entrada {
 			entrada = sc.next();
 			try {
 				if (entrada.length() != 1)
-					throw new LlegirException("S'ha d'introduir un char");
+					throw new ReadException("S'ha d'introduir un char");
 				flag_ok = true;
 			}
-			catch (LlegirException e){
+			catch (ReadException e){
 				System.out.println("Error : " + e.getMessage());
 				flag_ok = false;
 			}
@@ -117,13 +119,13 @@ public class Entrada {
 		String entrada = "";
 		while (!flag_ok){
 			System.out.println(missatge);
-			entrada = sc.next();
+			entrada = sc.nextLine();
 			try {
 				if (entrada.isEmpty() || entrada.isBlank())
-					throw new LlegirException("S'ha d'introduir una cadena amb caràcters visibles");
+					throw new ReadException("S'ha d'introduir una cadena amb caràcters visibles");
 				flag_ok = true;
 			}
-			catch (LlegirException e){
+			catch (ReadException e){
 				System.out.println("Error : " + e.getMessage());
 				flag_ok = false;
 			}
@@ -141,9 +143,9 @@ public class Entrada {
 			entrada = sc.next();
 			try {
 				if (entrada.length() != 1 || (entrada.charAt(0) != 'n' && entrada.charAt(0) != 's'))
-					throw new LlegirException("S'ha d'introduir 's' com a sí i 'n' com a no");
+					throw new ReadException("S'ha d'introduir 's' com a sí i 'n' com a no");
 				flag_ok = true;
-			} catch (LlegirException e) {
+			} catch (ReadException e) {
 				System.out.println("Error : " + e.getMessage());
 				flag_ok = false;
 			}
@@ -152,4 +154,3 @@ public class Entrada {
 		return resposta;
 	}
 }
-

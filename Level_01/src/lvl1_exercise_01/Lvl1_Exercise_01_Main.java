@@ -1,6 +1,10 @@
 package lvl1_exercise_01;
 
-public class Lvl1_Exercise_01 {
+import lvl1_exercise_01.classes.Producte;
+import lvl1_exercise_01.classes.Venda;
+import lvl1_exercise_01.classes.VendaBuidaException;
+
+public class Lvl1_Exercise_01_Main {
 	public static void main(String[] args) {
 		Venda venda = new Venda();
 		try{
