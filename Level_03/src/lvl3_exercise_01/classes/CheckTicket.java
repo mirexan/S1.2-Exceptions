@@ -1,12 +1,13 @@
 package lvl3_exercise_01.classes;
 
+import lvl3_exercise_01.classes.exceptions.ReadException;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Revision_Entradas {
+public class CheckTicket {
 	static Scanner sc = new Scanner(System.in);
 
-	//GENERAL METHODS InputMismatch
 
 	public static Byte llegirByte(String missatge)
 	{
@@ -28,7 +29,7 @@ public class Revision_Entradas {
 		return resposta_us;
 	}
 
-	public static int llegirInt(String missatge)
+	public static int readInt(String missatge)
 	{
 		boolean flag_ok = false;
 		int resposta_us = 0;
@@ -88,7 +89,6 @@ public class Revision_Entradas {
 		return resposta_us;
 	}
 
-	// GENERAL METHODS LlegirException
 
 	public static char llegirChar(String missatge)
 	{
@@ -100,7 +100,7 @@ public class Revision_Entradas {
 			entrada = sc.next();
 			try {
 				if (entrada.length() != 1)
-					throw new ReadException("S'ha d'introduir un char");
+					throw new ReadException("A char must be introduced");
 				flag_ok = true;
 			}
 			catch (ReadException e){
@@ -112,7 +112,7 @@ public class Revision_Entradas {
 		return resposta;
 	}
 
-	public static String llegirString(String missatge)
+	public static String readString(String missatge)
 	{
 		boolean flag_ok = false;
 		String resposta = "";
@@ -122,7 +122,7 @@ public class Revision_Entradas {
 			entrada = sc.nextLine();
 			try {
 				if (entrada.isEmpty() || entrada.isBlank())
-					throw new ReadException("S'ha d'introduir una cadena amb caràcters visibles");
+					throw new ReadException("You must introduce a str with visible chars");
 				flag_ok = true;
 			}
 			catch (ReadException e){
@@ -142,15 +142,15 @@ public class Revision_Entradas {
 			System.out.println(missatge);
 			entrada = sc.next();
 			try {
-				if (entrada.length() != 1 || (entrada.charAt(0) != 'n' && entrada.charAt(0) != 's'))
-					throw new ReadException("S'ha d'introduir 's' com a sí i 'n' com a no");
+				if (entrada.length() != 1 || (entrada.charAt(0) != 'n' && entrada.charAt(0) != 'y'))
+					throw new ReadException(" 'y' as yes and 'n' as no must be introduced");
 				flag_ok = true;
 			} catch (ReadException e) {
 				System.out.println("Error : " + e.getMessage());
 				flag_ok = false;
 			}
 		}
-		resposta = entrada.charAt(0) == 's'?true:false;
+		resposta = entrada.charAt(0) == 'y'?true:false;
 		return resposta;
 	}
 }

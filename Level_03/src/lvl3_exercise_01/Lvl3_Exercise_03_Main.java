@@ -1,10 +1,10 @@
 package lvl3_exercise_01;
 
-import lvl3_exercise_01.classes.Cine;
+import lvl3_exercise_01.classes.Cinema;
 
 public class Lvl3_Exercise_03_Main {
 	public static void main(String[] args) {
-	 Cine cine = new Cine();
-		cine.iniciar();
+	 Cinema cinema = new Cinema();
+		cinema.start();
 	}
 }
