@@ -46,7 +46,7 @@ public class Cinema {
 					resposta = this.gCine.showSeatsByPerson();
 					break;
 				case 3:
-					resposta = this.gCine.reservarButaca();
+					resposta = this.gCine.reserveSeat();
 					break;
 				case 4:
 					resposta = this.gCine.deleteReserve();

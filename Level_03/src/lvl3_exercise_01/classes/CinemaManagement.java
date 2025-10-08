@@ -1,19 +1,20 @@
 package lvl3_exercise_01.classes;
 
+import lvl3_exercise_01.classes.exceptions.ExceptionFreeSeat;
 import lvl3_exercise_01.classes.exceptions.ExceptionWrongName;
 import lvl3_exercise_01.classes.exceptions.ExceptionWrongRow;
 import lvl3_exercise_01.classes.exceptions.ExceptionWrongSeat;
 
 
 public class CinemaManagement {
-	//ATRIBUTTES
+
 	private final Cinema cinema;
-	//CONSTRUCTOR
+
 	public CinemaManagement(Cinema cinema)
 	{
 		this.cinema = cinema;
 	}
-	//GENERAL METHODS
+
 	public static int menu()
 	{
 		int option = -1;
@@ -36,23 +37,51 @@ public class CinemaManagement {
 		return resposta;
 	}
 
+	public boolean searchPerson(String name){
+		int i = 0;
+		int numSeats = this.cinema.getSeatManagement().getSeats().size();
+		boolean personExist = false;
+		try {
+			while (!this.cinema.getSeatManagement().getSeats().get(i).getNom().equalsIgnoreCase(name)
+					&& i < numSeats) {
+				i++;
+			}
+			personExist = i == numSeats - 1 ? false : true;
+		}
+		catch (IndexOutOfBoundsException e){
+		}
+		return personExist;
+	}
+
 	public String showSeatsByPerson(){
 		String nom = addPerson();
 		String resposta = "";
+		if (!searchPerson(nom)){
+			return "There is no seat in :" + nom + " name";
+		}
 		for(int i = 0; i < this.cinema.getSeatManagement().getSeats().size(); i++)
 		{
 			if (this.cinema.getSeatManagement().getSeats().get(i).getNom().equalsIgnoreCase(nom))
 				resposta += "\n" + this.cinema.getSeatManagement().getSeats().get(i).toString();
 		}
-		if (resposta.isEmpty())
-			resposta = "There is no seat in :" + nom + " name";
 		return resposta;
 	}
 
 	public String	reserveSeat(){
-		int fila = addRow();
-		int seient = addSeat();
-
+		int fila = 0;
+		int seient = 0;
+		try {
+			fila = addRow();
+		}
+		catch (ExceptionWrongRow e){
+			return e.getMessage();
+		}
+		try {
+			seient = addSeat();
+		}
+		catch (ExceptionWrongSeat e){
+			return e.getMessage();
+		}
 		String nom = "";
 		do{
 			nom = addPerson();
@@ -62,14 +91,28 @@ public class CinemaManagement {
 		return resposta;
 	}
 
-	public String deleteReserve()
-	{
-		int fila = 0, seient = 0, idButaca = -1;
-		String resposta =  "";
+	public String deleteReserve() {
+		int fila = 0, seient = 0;
+		String resposta = "";
 		System.out.println("Asking data to erease the reservation :");
-		fila = addRow();
-		seient = addSeat();
-		resposta = this.cinema.getSeatManagement().eliminateSeat(fila,seient);
+		try {
+			fila = addRow();
+		}
+		catch (ExceptionWrongRow e){
+			return e.getMessage();
+		}
+		try {
+			seient = addSeat();
+		} catch (ExceptionWrongSeat e) {
+			return e.getMessage();
+		}
+		try {
+			resposta = this.cinema.getSeatManagement().eliminateSeat(fila, seient);
+		}
+		catch (ExceptionFreeSeat e)
+		{
+			resposta = e.getMessage();
+		}
 		return resposta;
 	}
 
@@ -86,7 +129,12 @@ public class CinemaManagement {
 				fila = this.cinema.getSeatManagement().getSeats().get(i).getNum_row();
 				seient = this.cinema.getSeatManagement().getSeats().get(i).getNum_seat();
 				resposta += "\n" + this.cinema.getSeatManagement().getSeats().get(i).toString();
-				this.cinema.getSeatManagement().eliminateSeat(fila, seient);
+				try {
+					this.cinema.getSeatManagement().eliminateSeat(fila, seient);
+				}
+				catch (ExceptionFreeSeat e){
+					resposta += e.getMessage();
+				}
 			}
 		}
 		if (resposta.isEmpty())
@@ -126,38 +174,31 @@ public class CinemaManagement {
 		}
 		return resposta;
 	}
-	public int addRow(){
+	public int addRow() throws ExceptionWrongRow {
 		int resposta = 0;
 		int fila = 0;
 		fila = CheckTicket.readInt("Insert a row number");
-		try{
-			if (fila > 0 && fila <= this.cinema.getRoom_row())
-			{
-				resposta = fila;
-			}
-			else
-				throw new ExceptionWrongRow( "Invalid row number");
+
+		if (fila > 0 && fila <= this.cinema.getRoom_row())
+		{
+			resposta = fila;
 		}
-		catch (ExceptionWrongRow e){
-			System.out.println( "Error : " + e.getMessage());
-		}
+		else
+			throw new ExceptionWrongRow( "Invalid row number");
+
 		return resposta;
 	}
 
-	public int addSeat(){
+	public int addSeat() throws ExceptionWrongSeat {
 		int resposta = 0;
 		int seient = 0;
 		seient = CheckTicket.readInt("Insert a seat number :");
-		try{
-			if (seient > 0 && seient <= this.cinema.getSeats_row())
-			{
-				resposta = seient;
-			}
-			else
-				throw new ExceptionWrongSeat( "Invalid seat number");
+		if (seient > 0 && seient <= this.cinema.getSeats_row())
+		{
+			resposta = seient;
 		}
-		catch (ExceptionWrongSeat e){
-			System.out.println( "Error : " + e.getMessage());
+		else {
+			throw new ExceptionWrongSeat("Invalid seat number");
 		}
 		return resposta;
 	}

@@ -6,18 +6,18 @@ import lvl3_exercise_01.classes.exceptions.ExceptionOccupiedSeat;
 import java.util.ArrayList;
 
 public class SeatManagement {
-	//ATTRIBUTES
+
 	private ArrayList<Seat> seats;
-	//CONSTRUCTOR
+
 	public SeatManagement(){
 		this.seats = new ArrayList<Seat>();
 	}
-	//GETTER
+
 
 	public ArrayList<Seat> getSeats() {
 		return this.seats;
 	}
-	//GENERAL METHODS
+
 	public String addSeat(Seat novaSeat)
 	{
 		String resposta = "";
@@ -36,23 +36,18 @@ public class SeatManagement {
 		}
 		return resposta;
 	}
-	public String eliminateSeat(int fila, int seient){
+	public String eliminateSeat(int fila, int seient) throws ExceptionFreeSeat {
 		int id_butaca;
 		String resposta = "";
-		try{
-			id_butaca = searchSeat(fila,seient);
-			if (id_butaca == -1){
-				throw new ExceptionFreeSeat("There is no " +
+		id_butaca = searchSeat(fila,seient);
+		if (id_butaca == -1){
+			throw new ExceptionFreeSeat("There is no " +
 						"seat to delete");
-			}
-			else{
-				this.seats.remove(id_butaca);
-				resposta = "Place row: " + fila
-						+ ", seat: " + seient + " has been eliminated";
-			}
 		}
-		catch (ExceptionFreeSeat e){
-			resposta = "Error : " + e.getMessage();
+		else{
+			this.seats.remove(id_butaca);
+			resposta = "Place row: " + fila
+					+ ", seat: " + seient + " has been eliminated";
 		}
 		return resposta;
 	}
